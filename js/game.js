@@ -26,7 +26,7 @@ getMovies = (array) => {
 
 
 
-    urls = rand.map(r => 'http://www.omdbapi.com/?i=' + array[r] + '&apikey=80d347c7&');
+    urls = rand.map(r => 'https://www.omdbapi.com/?i=' + array[r] + '&apikey=80d347c7&');
 
     var promise = urls.map(url => fetch(url).then(y => y.json()));
 

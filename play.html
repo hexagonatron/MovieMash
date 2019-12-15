@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="css/style.css">
+    <title>MovieMash - Play!</title>
+</head>
+<body>
+
+    <div class="content-container">
+        <div class="header">
+            <h1>MovieMash</h1>
+        </div>
+        <div class="text-container">
+            <h2 id="instruction">Pick the movie you think has the higher IMDb rating.</h2>
+            <div id="game-over" class="hidden">
+                <h2>Game over</h2>
+                <button id="restart" class="button">Restart</button>
+            </div>
+            <br><h2>Score: <span id="score">0</span></h2>
+        </div>
+        <div class="movie-container-master">
+            <div class="movie-container" data-movie="0">
+                <div id="movie1-poster">
+                    <img class="poster"
+                        src="https://m.media-amazon.com/images/M/MV5BMTg0NTIzMjQ1NV5BMl5BanBnXkFtZTcwNDc3MzM5OQ@@._V1_SX300.jpg"
+                        alt="poster">
+                </div>
+                <div class="movie1-info">
+                    <br>
+                    <div class="imdb-rating hidden">
+                        <h2 class="rating-heading">IMDb rating:</h2>
+                        <h1 class="imdb-rating-value"></h1>
+                    </div>
+                    <div class="movie-title-full"><span id="movie1-title" class="movie1 info-title">The Good the Bad and the
+                            Movie</span> (<span class="movie-year">2008</span>)</div>
+                    <p class="info-director-full"><span class="movie1 info-heading">Director: </span><span id="movie1-director"
+                            class="movie1 info-director">Quintest Tarantesto</span></p>
+                    <p class="info-cast-full"><span class="movie1 info-heading">Cast: </span><span id="movie1-cast"
+                            class="movie1 info-cast">Casty McCastorface</span></p>
+                    <p id="movie1-description" class="movie1 info-description">Lorem ipsum, dolor sit amet consectetur
+                        adipisicing elit. Perspiciatis, blanditiis illum? Perferendis quos modi reprehenderit ea magni eos neque
+                        laboriosam possimus nulla nobis perspiciatis, quibusdam voluptate ipsam facilis laudantium impedit?</p>
+                </div>
+            </div>
+            <div class="movie-container" data-movie="1">
+                <div id="movie2-poster">
+                    <img class="poster"
+                        src="https://m.media-amazon.com/images/M/MV5BMTg0NTIzMjQ1NV5BMl5BanBnXkFtZTcwNDc3MzM5OQ@@._V1_SX300.jpg"
+                        alt="poster">
+                </div>
+                <div class="movie2-info">
+                    <br>
+                    <div class="imdb-rating hidden">
+                            <h2 class="rating-heading">IMDb rating:</h2>
+                            <h1 class="imdb-rating-value"></h1>
+                        </div>
+                    <div class="movie-title-full"><span id="movie2-title" class="movie2 info-title">The Good the Bad and the
+                            Movie</span> (<span class="movie-year">2008</span>)</div>
+                    <p class="info-director-full"><span class="movie2 info-heading">Director: </span><span id="movie2-director"
+                            class="movie2 info-director">Quintest Tarantesto</span></p>
+                    <p class="info-cast-full"><span class="movie2 info-heading">Cast: </span><span id="movie2-cast"
+                            class="movie2 info-cast">Casty McCastorface</span></p>
+                    <p id="movie2-description" class="movie2 info-description">Lorem ipsum, dolor sit amet consectetur
+                        adipisicing elit. Perspiciatis, blanditiis illum? Perferendis quos modi reprehenderit ea magni eos
+                        neque laboriosam possimus nulla nobis perspiciatis, quibusdam voluptate ipsam facilis laudantium
+                        impedit?</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="js/movieID.js"></script>
+    <script src="js/game.js"></script>
+</body>
+</html>

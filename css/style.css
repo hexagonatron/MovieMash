@@ -1,0 +1,182 @@
+* {
+    margin: 0;
+    padding: 0;
+    background-color: #FAF2AC;
+}
+
+div {
+    background: none;
+}
+
+span {
+    background: none;
+}
+
+p {
+    background: none;
+}
+
+html {
+}
+
+a {
+    text-decoration: none;
+}
+
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 5% 10%;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#heading-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 20px 0px;
+    padding: 20px;
+    color: #000;
+}
+
+#heading-container h1 {
+    font-size: 100px;
+}
+
+#button-container {
+    margin: 20px 0px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.button {
+    margin: 10px 5px;
+    padding: 10px 15px;
+    background-color: #9EAB59;
+    color: #000;
+    font-size: 25px;
+    font-weight: bold;
+    border-radius: 4px;
+    border: 2px solid #000;
+}
+
+.button:hover {
+    background-color: #012623;
+    color: #fff;
+}
+
+.content-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+
+}
+
+.header {
+    display: flex;
+    justify-content: center;
+    margin: 10px 10px;
+    font-size: 50px;
+}
+
+.text-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 10px 10px;
+}
+
+.movie-container-master {
+    display: flex;
+    flex-direction: row;
+    margin: 10px;
+    justify-content: center;
+}
+
+.movie-container{
+    justify-content: center;
+    margin: 5px;
+    padding: 5px;
+}
+
+.movie-container:hover {
+    background-color: aquamarine;
+}
+
+#movie1-poster,#movie2-poster {
+    justify-content: center;
+    display: flex;
+    background: none;
+}
+.poster {
+    justify-content: center;
+}
+
+.movie1-info,.movie2-info {
+    background: none;
+}
+
+.imdb-rating {
+    text-align: center;
+    background: none;
+}
+
+.rating-heading {
+    font-size: 14px;
+    background: none;
+}
+
+.imdb-rating-value {
+    background: none;
+}
+
+.movie-title-full {
+    justify-content: center;
+    text-align: center;
+    padding: 3px;
+    margin: 3px;
+}
+
+.info-heading {
+    font-size: 13px;
+}
+
+.info-title {
+    font-size: 22px;
+    font-weight: bold;
+    justify-content: center;
+    text-align: center;
+}
+
+.info-cast {
+    border-radius: 3px;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.info-description {
+    margin: 2px;
+    padding: 2px;
+    text-align: center;
+    background: none;
+}
+
+.info-director {
+    border-radius: 3px;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.info-director-full,.info-cast-full {
+    margin: 2px;
+    padding: 2px;
+    text-align: center;
+}
+
+.hidden {
+    display: none;
+}

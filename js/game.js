@@ -8,10 +8,10 @@ var score = 0;
 
 var movieArrayGlobal = [];
 
-//Generate random numbers
 
 getMovies = (array) => {
 
+    //Generate 2 unique random numbers
     do {
         var rand = [];
         rand[0] = Math.floor(Math.random() * array.length);
@@ -25,11 +25,13 @@ getMovies = (array) => {
     var urls = [];
 
 
-
+    //generate array of api urls pulling from the movieIDs Array
     urls = rand.map(r => 'https://www.omdbapi.com/?i=' + array[r] + '&apikey=80d347c7&');
 
+    //api call to omdb
     var promise = urls.map(url => fetch(url).then(y => y.json()));
 
+    //after results returned feed them into fill page function and start the game
     return Promise.all(promise).then(results => {
         console.log(results);
         if (results[0].imdbRating == results[1].imdbRating){
@@ -43,6 +45,7 @@ getMovies = (array) => {
     })
 }
 
+//Fill various parts of the page with correct info, update score, make sure hidden elements are hidden
 fillPage = (movieArray) => {
     movies.map((movie, i) => {
         document.getElementById("score").innerText = score;
@@ -58,12 +61,14 @@ fillPage = (movieArray) => {
     });
 }
 
+//Accept answers to true, so that when movie is clicked code is executed
 startGame = (results) => {
     acceptAnswer = true;
     console.log(results[0].imdbRating + ", " + results[1].imdbRating);
     
 }
 
+//After game over clears score and restarts game
 restartGame = () => {
     console.log("score: " + score);
     score = 0;
@@ -71,26 +76,28 @@ restartGame = () => {
     getMovies(movieIDs);
 }
 
+//start game on page load
 getMovies(movieIDs);
 
+//adds event handling function to movie boxes
 movies.forEach(movie => {
     movie.addEventListener("click", e => {
         if (acceptAnswer) {
-            acceptAnswer = false;
-            var selected = Number(e.currentTarget.dataset["movie"]);
-            movies.forEach((movie, i) => {
+            acceptAnswer = false; //when click detected, stop accepting further clicks
+            var selected = Number(e.currentTarget.dataset["movie"]); //determine which movie was clicked
+            movies.forEach((movie, i) => { //reveal imdb rating
                 movie.getElementsByClassName("hidden")[0].classList.remove("hidden");
                 movie.getElementsByClassName("imdb-rating-value")[0].innerHTML = movieArrayGlobal[i].imdbRating;
             });
             console.log(movieArrayGlobal[0].imdbRating + ", " + movieArrayGlobal[1].imdbRating);
             console.log(selected);
-            if (movieArrayGlobal[selected].imdbRating > movieArrayGlobal[(selected + 1) % 2].imdbRating) {
+            if (movieArrayGlobal[selected].imdbRating > movieArrayGlobal[(selected + 1) % 2].imdbRating) { //if correct answer wait for 750ms, inc score and get next set of movies
                 console.log("Winning!");
                 score++;
                 setTimeout(() => {
                     getMovies(movieIDs);
                 }, 750);
-            } else {
+            } else { //if wrong answer reveal game over and restart button
                 console.log("You Lose. =(");
                 document.getElementById("game-over").classList.remove("hidden");
                 document.getElementById("instruction").classList.add("hidden");
@@ -99,4 +106,5 @@ movies.forEach(movie => {
     })
 });
 
+//Restart button event handler
 document.getElementById("restart").addEventListener("click", e => restartGame());

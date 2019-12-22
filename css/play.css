@@ -1,0 +1,154 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.hidden {
+    display: none;
+}
+
+button {
+    border: none;
+    outline: none;
+}
+
+body {
+    background-color: #77431C;
+    font-family: 'Roboto', sans-serif;
+}
+
+.header {
+    background-color: #114945;
+    height: 160px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.header h1 {
+    color: #95501B;
+    font-family: 'Roboto', sans-serif;
+    text-shadow: 
+        -2px -2px 0 #000,
+        -2px 2px 0 #000,
+        2px 2px 0 #000,
+        2px -2px 0 #000;
+    font-size: 72px;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 20px 10px;
+    align-items: center;
+}
+
+.text-container {
+    background-color: #202020;
+    border-radius: 15px;
+    padding: 22px 45px;
+    text-align: center;
+    max-width: 710px;
+    color: #009E92;
+    font-weight: normal;
+    font-size: 30px;
+}
+
+#restart {
+    width: 180px;
+    background-color: #0B827A;
+    border-radius: 10px;
+    color: #000;
+    border: 2px solid #000;
+    box-sizing: border-box;
+    padding: 10px;
+    margin-top: 20px;
+    font-size: 36px;
+    font-weight: bold;
+}
+
+#restart:hover {
+    background-color: #009E92;
+    cursor: pointer;
+}
+
+#restart:active {
+    background-color: #0B827A;
+}
+
+.movie-container-master {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: stretch;
+    margin-top: 20px;
+    width: 100%;
+}
+
+.movie-container {
+    background-color: #202020;
+    padding: 30px;
+    border-radius: 15px;
+    margin-left: 10px;
+    margin-right: 10px;
+    max-width: 650px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.hover:hover {
+    background-color: #272727;
+    cursor: pointer;
+}
+
+.movie-info {
+    color: rgba(255, 255, 255, .5);
+    font-size: 18px;
+    text-align: center;
+}
+
+.movie-title-full {
+    font-size: 28px;
+    color: #009E92;
+    font-weight: bold;
+}
+
+.movie-year-full {
+    font-size: 14px;
+}
+
+.info-heading {
+    font-size: 12px;
+    color: #009E92;
+}
+
+@media only screen and (max-width: 655px) {
+
+    .header {
+        height: 100px;
+    }
+
+    .text-container {
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+
+    .movie-container-master {
+        flex-direction: column;
+    }
+
+    .movie-container {
+        flex-direction: row;
+        align-items: flex-start;
+        margin-bottom: 10px;
+    }
+
+    .poster {
+        max-width: 200px;
+    }
+
+    .movie-info {
+        padding-left: 15px;
+    }
+}

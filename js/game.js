@@ -47,11 +47,13 @@ getMovies = (array) => {
 
 //Fill various parts of the page with correct info, update score, make sure hidden elements are hidden
 fillPage = (movieArray) => {
+    document.getElementById("score").innerText = score;
+    document.getElementById("game-over").classList.add("hidden");
+    document.getElementById("restart").classList.add("hidden");
+    document.getElementById("instruction").classList.remove("hidden");
     movies.map((movie, i) => {
-        document.getElementById("score").innerText = score;
         movie.getElementsByClassName("imdb-rating")[0].classList.add("hidden");
-        document.getElementById("game-over").classList.add("hidden");
-        document.getElementById("instruction").classList.remove("hidden");
+        movie.classList.add("hover");
         movie.getElementsByClassName("poster")[0].setAttribute("src", movieArray[i].Poster);
         movie.getElementsByClassName("info-title")[0].innerText = movieArray[i].Title;
         movie.getElementsByClassName("movie-year")[0].innerText = movieArray[i].Year;
@@ -86,6 +88,7 @@ movies.forEach(movie => {
             acceptAnswer = false; //when click detected, stop accepting further clicks
             var selected = Number(e.currentTarget.dataset["movie"]); //determine which movie was clicked
             movies.forEach((movie, i) => { //reveal imdb rating
+                movie.classList.remove("hover");
                 movie.getElementsByClassName("hidden")[0].classList.remove("hidden");
                 movie.getElementsByClassName("imdb-rating-value")[0].innerHTML = movieArrayGlobal[i].imdbRating;
             });
@@ -100,6 +103,7 @@ movies.forEach(movie => {
             } else { //if wrong answer reveal game over and restart button
                 console.log("You Lose. =(");
                 document.getElementById("game-over").classList.remove("hidden");
+                document.getElementById("restart").classList.remove("hidden");
                 document.getElementById("instruction").classList.add("hidden");
             }
         }

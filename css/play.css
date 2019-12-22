@@ -126,29 +126,60 @@ body {
 @media only screen and (max-width: 655px) {
 
     .header {
-        height: 100px;
+        height: 50px;
+    }
+
+    .header h1 {
+        font-size: 30px;
+    }
+
+    .content {
+        margin: 5px 0px;
     }
 
     .text-container {
+        padding: 5px;
+        font-size: 20px;
         margin-left: 10px;
         margin-right: 10px;
     }
 
+    #restart {
+        font-size: 20px;
+        margin-top: 5px;
+        padding: 5px;
+        max-width: 100px;
+    }
+
     .movie-container-master {
         flex-direction: column;
+        margin-top: 5px;
     }
 
     .movie-container {
         flex-direction: row;
         align-items: flex-start;
         margin-bottom: 10px;
+        padding: 9px;
     }
 
     .poster {
-        max-width: 200px;
+        max-width: 100px;
     }
 
     .movie-info {
         padding-left: 15px;
+    }
+
+    .imdb-rating {
+        font-size: 10px;
+    }
+
+    .movie-title-full {
+        font-size: 20px;
+    }
+
+    .movie-info {
+        font-size: 14px;
     }
 }

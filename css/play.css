@@ -82,7 +82,6 @@ body {
     justify-content: space-evenly;
     align-items: stretch;
     margin-top: 20px;
-    width: 100%;
 }
 
 .movie-container {
@@ -102,16 +101,83 @@ body {
     cursor: pointer;
 }
 
+.poster-container {
+    width: 100%;
+    height: 100%;
+}
+
+.flip-card {
+    background-color: transparent;
+    perspective: 1250px;    
+}
+
+.flip-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.3s;
+    transform-style: preserve-3d;
+}
+
+.flip-right {
+    transform: rotateY(180deg);
+}
+
+.flip-left {
+    transform: rotateY(-180deg);
+}
+
+.animate-darken {
+    animation: darken .3s;
+    animation-fill-mode: forwards;
+}
+
+@keyframes darken {
+    0% {filter: brightness(1) grayscale(0);}
+    50% {filter: brightness(0.2) grayscale(1);}
+    100% {filter: brightness(0.2) grayscale(1);}
+}
+
+.flip-card-front, .flip-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.flip-card-back {
+    color: white;
+    backface-visibility: hidden;
+}
+
+.back-left {
+    transform: rotateY(180deg);
+}
+
+.back-right {
+    transform: rotateY(-180deg);
+}
+
+.imdb-rating {
+    height: 100%;
+    width: 100%;
+    padding: 40px;
+    box-sizing: border-box;
+    font-size: 36px;
+}
+
 .movie-info {
     color: rgba(255, 255, 255, .5);
     font-size: 18px;
     text-align: center;
+    margin-top: 20px;
 }
 
 .movie-title-full {
     font-size: 28px;
     color: #009E92;
     font-weight: bold;
+    margin-bottom: 5px;
 }
 
 .movie-year-full {
@@ -138,7 +204,7 @@ body {
     }
 
     .text-container {
-        padding: 5px;
+        padding: 10px;
         font-size: 20px;
         margin-left: 10px;
         margin-right: 10px;
@@ -161,14 +227,23 @@ body {
         align-items: flex-start;
         margin-bottom: 10px;
         padding: 9px;
+        box-sizing: border-box;
+    }
+
+    .flip-card {
+        box-sizing: border-box;
+        flex-shrink: 0;
     }
 
     .poster {
-        max-width: 100px;
+        width: 100px;
     }
 
     .movie-info {
         padding-left: 15px;
+        margin-top: 0px;
+        box-sizing: border-box;
+        width: 100%;
     }
 
     .imdb-rating {

@@ -51,9 +51,17 @@ fillPage = (movieArray) => {
     document.getElementById("game-over").classList.add("hidden");
     document.getElementById("restart").classList.add("hidden");
     document.getElementById("instruction").classList.remove("hidden");
+    
     movies.map((movie, i) => {
-        movie.getElementsByClassName("imdb-rating")[0].classList.add("hidden");
+        movie.getElementsByClassName("flip-card-inner")[0].classList.remove("flip-left", "flip-right");
+        movie.getElementsByClassName("flip-card-front")[0].classList.remove("animate-darken");
         movie.classList.add("hover");
+        movie.getElementsByClassName("poster")[0].addEventListener("load", (e) => { //fill h and w of flip card once img has loaded into page
+            movie.getElementsByClassName("flip-card")[0].style.height = e.target.height + "px";
+            console.log(e.target.height);
+            movie.getElementsByClassName("flip-card")[0].style.width = e.target.width + "px";
+            console.log(e.target.width);
+        })
         movie.getElementsByClassName("poster")[0].setAttribute("src", movieArray[i].Poster);
         movie.getElementsByClassName("info-title")[0].innerText = movieArray[i].Title;
         movie.getElementsByClassName("movie-year")[0].innerText = movieArray[i].Year;
@@ -72,10 +80,17 @@ startGame = (results) => {
 
 //After game over clears score and restarts game
 restartGame = () => {
-    console.log("score: " + score);
     score = 0;
-    console.log("score: " + score);
     getMovies(movieIDs);
+}
+
+getColour = (rating) => {
+    //map imdb value 5.5 -> 8.5 to colour hue value 0 - 120
+    var hue = ((Number(rating) - 5.5) / (8.5 - 5.5)) * 120;
+    if (hue <= 0) hue = 0;
+    if (hue >= 120) hue = 120;
+
+    return hue;
 }
 
 //start game on page load
@@ -89,8 +104,11 @@ movies.forEach(movie => {
             var selected = Number(e.currentTarget.dataset["movie"]); //determine which movie was clicked
             movies.forEach((movie, i) => { //reveal imdb rating
                 movie.classList.remove("hover");
-                movie.getElementsByClassName("hidden")[0].classList.remove("hidden");
+                movie.getElementsByClassName("flip-card-inner")[0].classList.add((i == 0)? "flip-left" : "flip-right");
+                movie.getElementsByClassName("flip-card-front")[0].classList.add("animate-darken");
                 movie.getElementsByClassName("imdb-rating-value")[0].innerHTML = movieArrayGlobal[i].imdbRating;
+                movie.getElementsByClassName("imdb-rating-value")[0].style.color = "hsl(" + getColour(movieArrayGlobal[i].imdbRating) + ", 100%, 36%)"; //colour text according to rating
+                console.log(getColour(movieArrayGlobal[i].imdbRating));
             });
             console.log(movieArrayGlobal[0].imdbRating + ", " + movieArrayGlobal[1].imdbRating);
             console.log(selected);
@@ -99,7 +117,7 @@ movies.forEach(movie => {
                 score++;
                 setTimeout(() => {
                     getMovies(movieIDs);
-                }, 750);
+                }, 1000);
             } else { //if wrong answer reveal game over and restart button
                 console.log("You Lose. =(");
                 document.getElementById("game-over").classList.remove("hidden");

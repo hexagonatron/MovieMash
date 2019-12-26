@@ -1,7 +1,8 @@
 # MovieMash
 
 A simple game to guess which movie has the higher rating on IMDb.
-Testit out [here](https://hexagonatron.github.io/MovieMash/play.html)
+
+Test it out [here](https://hexagonatron.github.io/MovieMash/play.html)
 
 ### Built With
 

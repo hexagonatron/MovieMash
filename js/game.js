@@ -17,8 +17,6 @@ getMovies = (array) => {
         rand[0] = Math.floor(Math.random() * array.length);
         rand[1] = Math.floor(Math.random() * array.length);
 
-        console.log(rand);
-
     } while (rand[0] == rand[1]);
 
     var movieObj = [];
@@ -33,13 +31,11 @@ getMovies = (array) => {
 
     //after results returned feed them into fill page function and start the game
     return Promise.all(promise).then(results => {
-        console.log(results);
         if (results[0].imdbRating == results[1].imdbRating){
             getMovies(movieIDs);
         } else {
             fillPage(results);
             startGame(results);
-            console.log(results);
             movieArrayGlobal = results;
         }
     })
@@ -58,9 +54,7 @@ fillPage = (movieArray) => {
         movie.classList.add("hover");
         movie.getElementsByClassName("poster")[0].addEventListener("load", (e) => { //fill h and w of flip card once img has loaded into page
             movie.getElementsByClassName("flip-card")[0].style.height = e.target.height + "px";
-            console.log(e.target.height);
             movie.getElementsByClassName("flip-card")[0].style.width = e.target.width + "px";
-            console.log(e.target.width);
         })
         movie.getElementsByClassName("poster")[0].setAttribute("src", movieArray[i].Poster);
         movie.getElementsByClassName("info-title")[0].innerText = movieArray[i].Title;
@@ -74,7 +68,6 @@ fillPage = (movieArray) => {
 //Accept answers to true, so that when movie is clicked code is executed
 startGame = (results) => {
     acceptAnswer = true;
-    console.log(results[0].imdbRating + ", " + results[1].imdbRating);
     
 }
 
@@ -108,18 +101,13 @@ movies.forEach(movie => {
                 movie.getElementsByClassName("flip-card-front")[0].classList.add("animate-darken");
                 movie.getElementsByClassName("imdb-rating-value")[0].innerHTML = movieArrayGlobal[i].imdbRating;
                 movie.getElementsByClassName("imdb-rating-value")[0].style.color = "hsl(" + getColour(movieArrayGlobal[i].imdbRating) + ", 100%, 36%)"; //colour text according to rating
-                console.log(getColour(movieArrayGlobal[i].imdbRating));
             });
-            console.log(movieArrayGlobal[0].imdbRating + ", " + movieArrayGlobal[1].imdbRating);
-            console.log(selected);
             if (movieArrayGlobal[selected].imdbRating > movieArrayGlobal[(selected + 1) % 2].imdbRating) { //if correct answer wait for 750ms, inc score and get next set of movies
-                console.log("Winning!");
                 score++;
                 setTimeout(() => {
                     getMovies(movieIDs);
                 }, 1000);
             } else { //if wrong answer reveal game over and restart button
-                console.log("You Lose. =(");
                 document.getElementById("game-over").classList.remove("hidden");
                 document.getElementById("restart").classList.remove("hidden");
                 document.getElementById("instruction").classList.add("hidden");
@@ -130,3 +118,20 @@ movies.forEach(movie => {
 
 //Restart button event handler
 document.getElementById("restart").addEventListener("click", e => restartGame());
+
+var lastWinWid = window.innerWidth;
+
+window.addEventListener("resize", (e) => {
+    console.log("Curr: " + window.innerWidth + " Last: " + lastWinWid);
+    if ((window.innerWidth <= 655 && lastWinWid > 655) || (window.innerWidth > 655 && lastWinWid <= 655)) {
+        console.log("TRIGGERED!!!!!")
+        Array.from(document.getElementsByClassName("movie-container")).map(m => {
+            m.getElementsByClassName("flip-card")[0].style.height = m.getElementsByClassName("poster")[0].height + "px"
+
+            m.getElementsByClassName("flip-card")[0].style.width = m.getElementsByClassName("poster")[0].width + "px"
+        })
+    }
+    
+    lastWinWid = window.innerWidth;
+    
+});

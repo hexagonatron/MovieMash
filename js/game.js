@@ -68,7 +68,6 @@ fillPage = (movieArray) => {
 //Accept answers to true, so that when movie is clicked code is executed
 startGame = (results) => {
     acceptAnswer = true;
-    
 }
 
 //After game over clears score and restarts game
@@ -119,6 +118,8 @@ movies.forEach(movie => {
 //Restart button event handler
 document.getElementById("restart").addEventListener("click", e => restartGame());
 
+
+//Function to resize flip-box to adjust for making the page bigger/smaller
 var lastWinWid = window.innerWidth;
 
 window.addEventListener("resize", (e) => {
@@ -127,11 +128,8 @@ window.addEventListener("resize", (e) => {
         console.log("TRIGGERED!!!!!")
         Array.from(document.getElementsByClassName("movie-container")).map(m => {
             m.getElementsByClassName("flip-card")[0].style.height = m.getElementsByClassName("poster")[0].height + "px"
-
             m.getElementsByClassName("flip-card")[0].style.width = m.getElementsByClassName("poster")[0].width + "px"
         })
     }
-    
     lastWinWid = window.innerWidth;
-    
 });
